@@ -23,7 +23,31 @@ public class WheelTest extends LinearOpMode {
         double wheelPowerTarget = 0;
         while (opModeIsActive()) {
 
-            if (this.gamepad1.right_stick_x == 0) {
+
+            if (this.gamepad1.right_stick_x > 0)
+            {
+                wheelPowerTarget = this.gamepad1.right_stick_x;
+                leftWheel.setPower(wheelPowerTarget);
+                rightWheel.setPower(wheelPowerTarget);
+                telemetry.addData("Status", "Running");
+                telemetry.addData("Left Wheel Power", leftWheel.getPower());
+                telemetry.addData("Right Wheel Power", rightWheel.getPower());
+                telemetry.addData("is Turning", "Right");
+                telemetry.update();
+            }
+            else if (this.gamepad1.right_stick_x < 0)
+            {
+                wheelPowerTarget = this.gamepad1.right_stick_x;
+                leftWheel.setPower(wheelPowerTarget);
+                rightWheel.setPower(wheelPowerTarget);
+                telemetry.addData("Status", "Running");
+                telemetry.addData("Left Wheel Power", -leftWheel.getPower());
+                telemetry.addData("Right Wheel Power", -rightWheel.getPower());
+                telemetry.addData("is Turning", "Left");
+                telemetry.update();
+            }
+            else if (this.gamepad1.right_stick_x == 0)
+            {
                 wheelPowerTarget = this.gamepad1.left_stick_y;
                 leftWheel.setPower(wheelPowerTarget);
                 rightWheel.setPower(-wheelPowerTarget);
@@ -38,30 +62,8 @@ public class WheelTest extends LinearOpMode {
                     telemetry.addData("Forward/Backwards", "Backwards");
                 }
                 telemetry.update();
-            }
-            else if (this.gamepad1.right_stick_x > 0) {
-                wheelPowerTarget = this.gamepad1.left_stick_y;
-                leftWheel.setPower(wheelPowerTarget);
-                rightWheel.setPower(wheelPowerTarget);
-                telemetry.addData("Status", "Running");
-                telemetry.addData("Left Wheel Power", leftWheel.getPower());
-                telemetry.addData("Right Wheel Power", rightWheel.getPower());
-                telemetry.addData("is Turning", "Right");
-                telemetry.update();
-            }
-            else if (this.gamepad1.right_stick_x < 0)
-            {
-                wheelPowerTarget = this.gamepad1.left_stick_y;
-                leftWheel.setPower(-wheelPowerTarget);
-                rightWheel.setPower(-wheelPowerTarget);
-                telemetry.addData("Status", "Running");
-                telemetry.addData("Left Wheel Power", -leftWheel.getPower());
-                telemetry.addData("Right Wheel Power", -rightWheel.getPower());
-                telemetry.addData("is Turning", "Left" +
-                        "");
-                telemetry.update();
-            }
 
+            }
         }
     }
 }
