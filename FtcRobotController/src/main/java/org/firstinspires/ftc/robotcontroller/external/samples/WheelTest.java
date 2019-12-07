@@ -15,7 +15,7 @@ public class WheelTest extends LinearOpMode {
     public void runOpMode() {
         leftWheel = hardwareMap.get(DcMotor.class, "leftWheel");
         rightWheel = hardwareMap.get(DcMotor.class, "rightWheel");
-        telemetry.addData("Status", "Initialized");
+        telemetry.addData("Status", "Initialize Success");
         telemetry.update();
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
