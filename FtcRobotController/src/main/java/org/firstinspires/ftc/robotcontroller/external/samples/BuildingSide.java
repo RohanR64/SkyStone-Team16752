@@ -23,10 +23,9 @@ public class BuildingSide extends LinearOpMode {
         wheelPowerTarget = 1;
         opmodeRunTime.reset();
         while (opmodeRunTime.seconds() < 1.0) {
-            rightWheel.setPower(-wheelPowerTarget);
+            rightWheel.setPower(wheelPowerTarget);
             telemetry.update();
         }
-        opmodeRunTime.reset();
         opmodeRunTime.reset();
         while (opmodeRunTime.seconds() < 3.0) {
             rightWheel.setPower(-wheelPowerTarget);
