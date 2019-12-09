@@ -17,7 +17,7 @@ public class BuildingSide extends LinearOpMode {
         ElapsedTime opmodeRunTime = new ElapsedTime();
         leftWheel = hardwareMap.get(DcMotor.class, "leftWheel");
         rightWheel = hardwareMap.get(DcMotor.class, "rightWheel");
-        telemetry.addData("Status", "Initialized");
+        telemetry.addData("Status", "Initialized ");
         telemetry.update();
         double wheelPowerTarget = 0;
         wheelPowerTarget = 1;
