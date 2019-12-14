@@ -7,8 +7,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import static com.sun.tools.doclint.Entity.and;
-
 @TeleOp
 public class DrivingAndArmControlV1 extends LinearOpMode {
     private DcMotor leftWheel;
@@ -46,8 +44,8 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
                 telemetry.update();
             } else if (this.gamepad1.right_stick_x < 0) {
                 wheelPowerTarget = this.gamepad1.right_stick_x;
-                leftWheel.setPower(wheelPowerTarget);
-                rightWheel.setPower(wheelPowerTarget);
+                leftWheel.setPower(-wheelPowerTarget);
+                rightWheel.setPower(-wheelPowerTarget);
                 telemetry.addData("Status", "Running");
                 telemetry.addData("Left Wheel Power", -leftWheel.getPower());
                 telemetry.addData("Right Wheel Power", -rightWheel.getPower());
@@ -113,4 +111,4 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
         }
     }
 }
-}
+
