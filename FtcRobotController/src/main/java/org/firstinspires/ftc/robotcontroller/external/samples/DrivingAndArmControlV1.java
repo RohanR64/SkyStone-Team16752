@@ -14,7 +14,7 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
     private DcMotor leftWheel;
     private DcMotor rightWheel;
     private DcMotor armMotor;
-    private Servo armServo;
+    //private Servo armServo;
     private Servo clawServo;
 
     @Override
@@ -22,7 +22,7 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
         leftWheel = hardwareMap.get(DcMotor.class, "leftWheel");
         rightWheel = hardwareMap.get(DcMotor.class, "rightWheel");
         armMotor = hardwareMap.get(DcMotor.class, "armMotor");
-        armServo = hardwareMap.get(Servo.class, "armServo");
+        //armServo = hardwareMap.get(Servo.class, "armServo");
         clawServo = hardwareMap.get(Servo.class, "clawServo");
         telemetry.addData("Status", "Initialized");
         telemetry.update();
