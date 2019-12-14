@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static com.sun.tools.doclint.Entity.and;
 
@@ -19,6 +20,7 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+        ElapsedTime opmodeRunTime = new ElapsedTime();
         leftWheel = hardwareMap.get(DcMotor.class, "leftWheel");
         rightWheel = hardwareMap.get(DcMotor.class, "rightWheel");
         armMotor = hardwareMap.get(DcMotor.class, "armMotor");
@@ -70,16 +72,22 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
 
             }
             //arm raising and lowering section
+            double armPowerTarget = 0;
+            opmodeRunTime.reset();
             if (this.gamepad2.dpad_up) {
-                armPositionTarget += 0.01;
-                armMotor.setTargetPosition(armPositionTarget);
-                telemetry.addData("arm is", "being raised");
+                while (opmodeRunTime.seconds() < 0.5) {
 
+                    armPowerTarget += 0.10;
+                    armMotor.setTargetPosition(armPositionTarget);
+                    telemetry.addData("arm is", "being raised");
+                }
             } else if (this.gamepad2.dpad_down) {
-                armPositionTarget -= 0.01;
-                armMotor.setTargetPosition(armPositionTarget);
-                telemetry.addData("arm is", "being lowered");
-                //armRaisedState=-1;
+                while (opmodeRunTime.seconds() < 0.5) {
+
+                    armPowerTarget -= 0.10;
+                    armMotor.setTargetPosition(armPositionTarget);
+                    telemetry.addData("arm is", "being raised");
+                }
             } else {
                 telemetry.addData("arm is", "not being raised or lowered");
                 //armRaisedState=0;
