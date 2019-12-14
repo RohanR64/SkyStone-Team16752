@@ -77,15 +77,13 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
             if (this.gamepad2.dpad_up) {
                 while (opmodeRunTime.seconds() < 0.5) {
 
-                    armPowerTarget += 0.10;
-                    armMotor.setTargetPosition(armPositionTarget);
+                    armMotor.setTargetPosition(1);
                     telemetry.addData("arm is", "being raised");
                 }
             } else if (this.gamepad2.dpad_down) {
                 while (opmodeRunTime.seconds() < 0.5) {
 
-                    armPowerTarget -= 0.10;
-                    armMotor.setTargetPosition(armPositionTarget);
+                    armMotor.setTargetPosition(-1);
                     telemetry.addData("arm is", "being raised");
                 }
             } else {
