@@ -14,7 +14,7 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
     private DcMotor leftWheel;
     private DcMotor rightWheel;
     private DcMotor armMotor;
-    private Servo armServo;
+    //private Servo armServo;
     private Servo clawServo;
 
     @Override
@@ -22,7 +22,7 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
         leftWheel = hardwareMap.get(DcMotor.class, "leftWheel");
         rightWheel = hardwareMap.get(DcMotor.class, "rightWheel");
         armMotor = hardwareMap.get(DcMotor.class, "armMotor");
-        armServo = hardwareMap.get(Servo.class, "armServo");
+        //armServo = hardwareMap.get(Servo.class, "armServo");
         clawServo = hardwareMap.get(Servo.class, "clawServo");
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -74,25 +74,6 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
                 }
 
             }
-            //arm raising and lowering section
-            if (this.gamepad2.dpad_up){
-                armPositionTarget+=0.01;
-                armMotor.setTargetPosition(armPositionTarget);
-                telemetry.addData("arm is","being raised");
-                armRaisedState=1;
-            }
-            else if (this.gamepad2.dpad_down){
-                armPositionTarget-=0.01;
-                armMotor.setTargetPosition(armPositionTarget);
-                telemetry.addData("arm is","being lowered");
-                armRaisedState=-1;
-            }
-            else {
-                telemetry.addData("arm is","not being raised or lowered");
-                armRaisedState=0;
-            }
-
-
 
             //grabber control section
             if (armRaisedState==-1) {
@@ -153,91 +134,7 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
                 }
 
             }
-            else if (armRaisedState==1) {
-                //if arm is extended upwards
-                double basePos = 0.03;
-                telemetry.addData("Mode","Arm Extended Upwards");
-                if (gamepad2.left_stick_y<0){
 
-
-                    armServo.setPosition(basePos-gamepad2.left_stick_y/3);
-                    double armServoPos = armServo.getPosition();
-                    telemetry.addData("armPos", armServoPos);
-                    telemetry.addData("armDir", "Down");
-
-
-                }
-                else if (gamepad2.left_stick_y==0){
-
-                    double armServoPos = armServo.getPosition();
-                    telemetry.addData("armPos", armServoPos);
-                    telemetry.addData("armDir", "Neutral");
-
-                }
-                else if (gamepad2.left_stick_y>0) {
-
-
-                    armServo.setPosition(basePos-gamepad2.left_stick_y/3);
-                    double armServoPos = armServo.getPosition();
-                    telemetry.addData("armPos", armServoPos);
-                    telemetry.addData("armDir", "Up");
-                }
-                if (gamepad2.right_stick_y>0){
-
-
-                    clawServo.setPosition(0.65+gamepad2.right_stick_y/2.5);
-                    double clawServoPos = clawServo.getPosition();
-                    telemetry.addData("clawPos", clawServoPos);
-                    telemetry.addData("ClawDir","Grabbing");
-
-                }
-                else if (gamepad2.right_stick_y==0){
-
-                    double clawServoPos = clawServo.getPosition();
-                    telemetry.addData("clawPos", clawServoPos);
-                    telemetry.addData("clawDir", "Neutral");
-
-                }
-                else if (armRaisedState==0) {
-
-
-                    clawServo.setPosition(0.65+gamepad2.right_stick_y/2.5);
-                    double clawServoPos = clawServo.getPosition();
-                    telemetry.addData("clawPos", clawServoPos);
-                    telemetry.addData("clawDir", "Releasing");
-
-                }
-
-            }
-            else {
-
-                double basePos = 0.25;
-                telemetry.addData("Mode","Neutral");
-                if (gamepad2.left_stick_y<0){
-
-
-                    armServo.setPosition(basePos-gamepad2.left_stick_y/3);
-                    double armServoPos = armServo.getPosition();
-                    telemetry.addData("armPos", armServoPos);
-                    telemetry.addData("armDir", "Down");
-
-
-                }
-                else if (gamepad2.left_stick_y==0){
-
-                    double armServoPos = armServo.getPosition();
-                    telemetry.addData("armPos", armServoPos);
-                    telemetry.addData("armDir", "Neutral");
-
-                }
-                else if (gamepad2.left_stick_y>0) {
-
-                    //armServo.setDirection(Servo.Direction.FORWARD);
-                    armServo.setPosition(basePos-gamepad2.left_stick_y/3);
-                    double armServoPos = armServo.getPosition();
-                    telemetry.addData("armPos", armServoPos);
-                    telemetry.addData("armDir", "Up");
-                }
                 if (gamepad2.right_stick_y>0){
 
                     //armServo.setDirection(Servo.Direction.REVERSE);
