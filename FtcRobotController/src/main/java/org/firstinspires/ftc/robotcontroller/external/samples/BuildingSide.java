@@ -30,29 +30,36 @@ public class BuildingSide extends LinearOpMode {
         double armRaisedState = 0; //arm is in neutral state at the start
         int armPositionTarget = 0;
         opmodeRunTime.reset();
+        setToNormal();
         while (opmodeRunTime.seconds() < 1.0){
             driveForward(1);
         }
         opmodeRunTime.reset();
+        setToNormal();
         while (opmodeRunTime.seconds() < 1.0){
             driveBackward(1);
         }
         opmodeRunTime.reset();
+        setToNormal();
         while (opmodeRunTime.seconds() < 1.0){
             turnLeft(1);
         }
         opmodeRunTime.reset();
+        setToNormal();
         while (opmodeRunTime.seconds() < 1.0){
             turnRight(1);
         }
         opmodeRunTime.reset();
-        while (opmodeRunTime.seconds() < 1.0) {
-            changeArm(0.25);
+        setToNormal();
+        while (opmodeRunTime.seconds() < 5.0) {
+            changeArm(1);
         }
         opmodeRunTime.reset();
+        setToNormal();
         while (opmodeRunTime.seconds() < 1.0) {
-            changeArm(-0.25);
+            changeArm(-1);
         }
+        setToNormal();
     }
 
     public void driveBackward(double power){
@@ -98,5 +105,10 @@ public class BuildingSide extends LinearOpMode {
         telemetry.addData("clawPos", clawServoPos);
         telemetry.addData("ClawDir","Moving");
         telemetry.update();
+    }
+    public void setToNormal(){
+        leftWheel.setPower(0);
+        rightWheel.setPower(0);
+        armMotor.setPower(0);
     }
 }

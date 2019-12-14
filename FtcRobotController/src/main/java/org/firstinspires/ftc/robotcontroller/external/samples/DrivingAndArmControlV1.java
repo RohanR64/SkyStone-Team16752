@@ -75,16 +75,17 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
             if (this.gamepad2.dpad_up) {
                 while (opmodeRunTime.seconds() < 0.5) {
 
-                    armMotor.setTargetPosition(1);
+                    armMotor.setPower(1);
                     telemetry.addData("arm is", "being raised");
                 }
             } else if (this.gamepad2.dpad_down) {
                 while (opmodeRunTime.seconds() < 0.5) {
 
-                    armMotor.setTargetPosition(-1);
+                    armMotor.setPower (-1);
                     telemetry.addData("arm is", "being raised");
                 }
             } else {
+                armMotor.setPower(0);
                 telemetry.addData("arm is", "not being raised or lowered");
                 //armRaisedState=0;
             }
@@ -96,7 +97,7 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
 
             if (gamepad2.right_stick_y>0){
 
-                //armServo.setDirection(Servo.Direction.REVERSE);
+
                 clawServo.setPosition(0.65+gamepad2.right_stick_y/2.5);
                 double clawServoPos = clawServo.getPosition();
                 telemetry.addData("clawPos", clawServoPos);
