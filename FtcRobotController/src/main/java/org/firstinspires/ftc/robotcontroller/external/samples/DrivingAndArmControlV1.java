@@ -70,12 +70,12 @@ public class DrivingAndArmControlV1 extends LinearOpMode {
 
             }
             //arm raising and lowering section
-            if (this.gamepad2.dpad_up) {
+            if (this.gamepad2.left_stick_y>0) {
                 armPositionTarget += 0.01;
                 armMotor.setTargetPosition(armPositionTarget);
                 telemetry.addData("arm is", "being raised");
 
-            } else if (this.gamepad2.dpad_down) {
+            } else if (this.gamepad2.left_stick_y<0) {
                 armPositionTarget -= 0.01;
                 armMotor.setTargetPosition(armPositionTarget);
                 telemetry.addData("arm is", "being lowered");
