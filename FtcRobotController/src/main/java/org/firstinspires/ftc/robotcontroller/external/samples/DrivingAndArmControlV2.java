@@ -19,7 +19,6 @@ public class DrivingAndArmControlV2 extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        ElapsedTime opmodeRunTime = new ElapsedTime();
         leftWheel = hardwareMap.get(DcMotor.class, "leftWheel");
         rightWheel = hardwareMap.get(DcMotor.class, "rightWheel");
         armMotor = hardwareMap.get(DcMotor.class, "armMotor");
@@ -43,17 +42,19 @@ public class DrivingAndArmControlV2 extends LinearOpMode {
             leftWheel.setPower(DrivePower);
             rightWheel.setPower(DrivePower);
             telemetry.addData("Status", "Running");
-            telemetry.addData("Left Wheel Power", leftWheel.getPower());
-            telemetry.addData("Right Wheel Power", rightWheel.getPower());
             if (this.gamepad1.left_stick_y > 0)
             {
                 telemetry.addData("is moving", "Forward");
                 TranslationalMvmt =true;
+                telemetry.addData("Left Wheel Translational Power", leftWheel.getPower());
+                telemetry.addData("Right Wheel Translational Power", rightWheel.getPower());
             }
             else if (this.gamepad1.left_stick_y < 0)
             {
                 telemetry.addData("is moving", "Backward");
                 TranslationalMvmt =true;
+                telemetry.addData("Left Wheel Translational Power", leftWheel.getPower());
+                telemetry.addData("Right Wheel Translational Power", rightWheel.getPower());
             }
             StrafePower = this.gamepad1.left_stick_x;
             middleWheel.setPower(StrafePower);
@@ -125,19 +126,18 @@ public class DrivingAndArmControlV2 extends LinearOpMode {
             while (this.gamepad2.right_stick_x>0)
             {
                 ClawRotateServoPos += 0.05;
-                clawRotateServo.setPosition(5);
-                telemetry.addData("claw rotation", "");
+                telemetry.addData("claw rotation", "clockwise");
             }
-            while (this.gamepad2.left_stick_y<0)
+            while (this.gamepad2.right_stick_x<0)
             {
-                armMotor.setPower (-.1);
-                telemetry.addData("arm is", "being raised");
+                ClawRotateServoPos -= 0.05;
+                telemetry.addData("claw rotation", "counterclockwise");
             }
-            while(this.gamepad2.left_stick_y==0)
+            while(this.gamepad2.right_stick_x==0)
             {
-                armMotor.setPower(0);
-                telemetry.addData("arm is", "not moving");
+                telemetry.addData("claw rotation", "none");
             }
+            clawRotateServo.setPosition(ClawRotateServoPos);
             telemetry.update();
 
         }
