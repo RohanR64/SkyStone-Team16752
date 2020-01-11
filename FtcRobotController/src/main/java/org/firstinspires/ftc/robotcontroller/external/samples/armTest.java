@@ -16,7 +16,7 @@ public class armTest extends LinearOpMode {
 
 
     @Override
-    public void runOpMode() {
+        public void runOpMode() {
 
         //armMotor = hardwareMap.get(DcMotor.class, "armMotor");
         armServo = hardwareMap.get(Servo.class, "armServo");

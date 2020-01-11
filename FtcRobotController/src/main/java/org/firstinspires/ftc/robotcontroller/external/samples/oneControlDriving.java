@@ -9,12 +9,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp
-public class DrivingAndArmControlV2 extends LinearOpMode {
+public class oneControlDriving extends LinearOpMode  {
     private DcMotor leftWheel;
     private DcMotor rightWheel;
     private DcMotor armMotor;
     private DcMotor middleWheel;
-    private Servo clawRotateServo;
     private Servo clawServo;
 
     @Override
@@ -37,7 +36,7 @@ public class DrivingAndArmControlV2 extends LinearOpMode {
         boolean TranslationalMvmt = false;
         while (opModeIsActive()) {
 
-        //Translational Motion
+            //Translational Motion
             DrivePower = -this.gamepad1.left_stick_y;
             leftWheel.setPower(-DrivePower);
             rightWheel.setPower(DrivePower);
@@ -77,7 +76,7 @@ public class DrivingAndArmControlV2 extends LinearOpMode {
             }
             telemetry.update();
 
-        //Rotational Motion
+            //Rotational Motion
             if (!TranslationalMvmt)
             {
                 RotatePower = this.gamepad1.right_stick_x;
@@ -94,36 +93,42 @@ public class DrivingAndArmControlV2 extends LinearOpMode {
             }
             //telemetry.update();
 
-        //Arm Motion
-            if (this.gamepad2.left_stick_y>0)
+            //Arm Motion
+            if (this.gamepad1.left_trigger>0)
             {
-                    armMotor.setPower(-1.0);
-                    telemetry.addData("arm is", "being raised");
+                armMotor.setPower(-1.0);
+                telemetry.addData("arm is", "being raised");
             }
-            else if (this.gamepad2.left_stick_y<0)
+            else if (this.gamepad1.right_trigger>0)
             {
-                    armMotor.setPower (1.0);
-                    telemetry.addData("arm is", "being raised");
+                armMotor.setPower (1.0);
+                telemetry.addData("arm is", "being raised");
             }
-            else if (this.gamepad2.left_stick_y==0)
+            else
             {
                 armMotor.setPower(0);
             }
             telemetry.update();
 
-        //Claw Motion
-            if (gamepad2.right_stick_y !=0)
+            //Claw Motion
+            if (gamepad1.left_bumper)
             {
-                clawServo.setPosition(gamepad2.right_stick_y);
+                clawServo.setPosition(1);
                 double clawServoPos = clawServo.getPosition();
                 telemetry.addData("clawPos", clawServoPos);
                 telemetry.addData("ClawDir","Grabbing");
             }
 
+            if (gamepad1.right_bumper)
+            {
+                clawServo.setPosition(-1);
+                double clawServoPos = clawServo.getPosition();
+                telemetry.addData("clawPos", clawServoPos);
+                telemetry.addData("ClawDir","Opening");
+            }
             telemetry.update();
 
 
         }
     }
 }
-
