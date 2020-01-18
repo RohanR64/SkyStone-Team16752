@@ -17,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import java.util.Locale;
 
 @Autonomous
-public class AutonomousStraightRed extends LinearOpMode {
+public class autoTest extends LinearOpMode {
     private DcMotor leftWheel;
     private DcMotor rightWheel;
     private DcMotor armMotor;
@@ -45,43 +45,11 @@ public class AutonomousStraightRed extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         double armRaisedState = 0; //arm is in neutral state at the start
         int armPositionTarget = 0;
-        while(opmodeRunTime.seconds()<1.0){
-            changeGrab(-1);
+        while (opmodeRunTime.seconds() < 5.0) {
+            changeArm(-1);
         }
         setToNormal();
         opmodeRunTime.reset();
-        opmodeRunTime.reset();
-        setToNormal();
-        while (opmodeRunTime.seconds()<1.5){
-            driveForward(0.75);
-        }
-        opmodeRunTime.reset();
-        while (opmodeRunTime.seconds()<5){
-            changeArm(1.0);
-        }
-        setToNormal();
-        opmodeRunTime.reset();
-        while(opmodeRunTime.seconds()<1.0){
-            changeGrab(1);
-        }
-        setToNormal();
-        opmodeRunTime.reset();
-        while (opmodeRunTime.seconds()<0.5){
-            driveBackward(0.75);
-        }
-        opmodeRunTime.reset();
-        setToNormal();
-        while (opmodeRunTime.seconds()<6.0){
-            driveRight(0.75);
-        }
-        setToNormal();
-        opmodeRunTime.reset();
-        while(opmodeRunTime.seconds()<1.0){
-            changeGrab(-1);
-        }
-        setToNormal();
-        opmodeRunTime.reset();
-        colorSenseRed();
     }
 
     public void driveBackward ( double power){
@@ -161,4 +129,5 @@ public class AutonomousStraightRed extends LinearOpMode {
         }
     }
 }
+
 
