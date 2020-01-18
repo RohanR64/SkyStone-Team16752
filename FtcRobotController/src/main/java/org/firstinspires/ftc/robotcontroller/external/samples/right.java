@@ -45,11 +45,9 @@ public class right extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         double armRaisedState = 0; //arm is in neutral state at the start
         int armPositionTarget = 0;
-        setToNormal();
-        opmodeRunTime.reset();
-        setToNormal();
-        while (opmodeRunTime.seconds() > 25 && opmodeRunTime.seconds() < 30)
-        {colorSenseRed();}
+        while (opmodeRunTime.seconds() > 25 && opmodeRunTime.seconds() < 30) {
+            colorSenseRed();
+        }
         setToNormal();
 
     }
@@ -64,7 +62,7 @@ public class right extends LinearOpMode {
     }
 
     public void colorSenseRed() {
-        // hsvValues is an array that will hold the hue, saturation, and value information.
+        // hsvValues is an array that will  the hue, saturation, and value information.
         float hsvValues[] = {0F, 0F, 0F};
 
         // values is a reference to the hsvValues array.

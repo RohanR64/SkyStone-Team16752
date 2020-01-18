@@ -45,11 +45,30 @@ public class left extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         double armRaisedState = 0; //arm is in neutral state at the start
         int armPositionTarget = 0;
-        setToNormal();
-        opmodeRunTime.reset();
-        setToNormal();
-        while (opmodeRunTime.seconds() > 25 && opmodeRunTime.seconds() < 30)
-            colorSenseRed();
+
+        while (opmodeRunTime.seconds() > 25 && opmodeRunTime.seconds() < 30) {
+            while (sensorColor.blue() < 100 || sensorColor.red() < 100) {
+                float hsvValues[] = {0F, 0F, 0F};
+
+                // values is a reference to the hsvValues array.
+                final float values[] = hsvValues;
+
+                // sometimes it helps to multiply the raw RGB values with a scale factor
+                // to amplify/attentuate the measured values.
+                final double SCALE_FACTOR = 255;
+                // convert the RGB values to HSV values.
+                // multiply by the SCALE_FACTOR.
+                // then cast it back to int (SCALE_FACTOR is a double)
+                Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
+                        (int) (sensorColor.green() * SCALE_FACTOR),
+                        (int) (sensorColor.blue() * SCALE_FACTOR),
+                        hsvValues);
+                middleWheel.setPower(1);
+            }
+        }
+        if(opmodeRunTime.seconds() == 30){
+            setToNormal();
+        }
     }
 
 
