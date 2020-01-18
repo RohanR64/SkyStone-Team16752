@@ -22,7 +22,7 @@ public class oneControlDriving extends LinearOpMode  {
         rightWheel = hardwareMap.get(DcMotor.class, "rightWheel");
         armMotor = hardwareMap.get(DcMotor.class, "armMotor");
         middleWheel = hardwareMap.get(DcMotor.class, "middleWheel");
-        //armServo = hardwareMap.get(Servo.class, "armServo");
+
         clawServo = hardwareMap.get(Servo.class, "clawServo");
         telemetry.addData("Status", "Initialized");
         telemetry.update();
