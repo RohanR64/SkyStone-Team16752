@@ -52,7 +52,7 @@ public class AutonomousStraightBlue extends LinearOpMode {
         opmodeRunTime.reset();
         opmodeRunTime.reset();
         setToNormal();
-        while (opmodeRunTime.seconds()<1.5){
+        while (opmodeRunTime.seconds()<0.3){
             driveForward(0.75);
         }
         opmodeRunTime.reset();

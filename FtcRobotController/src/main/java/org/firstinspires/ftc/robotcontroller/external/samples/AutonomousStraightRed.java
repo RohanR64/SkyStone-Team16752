@@ -45,37 +45,38 @@ public class AutonomousStraightRed extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         double armRaisedState = 0; //arm is in neutral state at the start
         int armPositionTarget = 0;
-        while(opmodeRunTime.seconds()<1.0){
-            changeGrab(-1);
-        }
         setToNormal();
         opmodeRunTime.reset();
-        opmodeRunTime.reset();
         setToNormal();
-        while (opmodeRunTime.seconds()<1.5){
-            driveForward(0.75);
-        }
-        opmodeRunTime.reset();
-        while (opmodeRunTime.seconds()<5){
-            changeArm(1.0);
-        }
-        setToNormal();
-        opmodeRunTime.reset();
-        while(opmodeRunTime.seconds()<1.0){
-            changeGrab(1);
-        }
-        setToNormal();
-        opmodeRunTime.reset();
-        while (opmodeRunTime.seconds()<0.5){
-            driveBackward(0.75);
+        while (opmodeRunTime.seconds()<0.90){
+            //driveForward(1.00);
+            //changeGrab(-1);
         }
         opmodeRunTime.reset();
         setToNormal();
         while (opmodeRunTime.seconds()<6.0){
-            driveRight(0.75);
+           // changeArm(1.0);
         }
         setToNormal();
         opmodeRunTime.reset();
+        while(opmodeRunTime.seconds()<1.0){
+            //changeGrab(1);
+        }
+        setToNormal();
+        opmodeRunTime.reset();
+        while (opmodeRunTime.seconds()<0.45){
+            //driveBackward(0.75);
+        }
+        opmodeRunTime.reset();
+        setToNormal();
+        while (opmodeRunTime.seconds()<0.75){
+            turnLeft(0.75);
+        }
+        setToNormal();
+        opmodeRunTime.reset();
+        while (opmodeRunTime.seconds()<3.00){
+            driveForward(1.00);
+        }
         while(opmodeRunTime.seconds()<1.0){
             changeGrab(-1);
         }
@@ -100,13 +101,33 @@ public class AutonomousStraightRed extends LinearOpMode {
         telemetry.addData("is Moving", "Forward");
         telemetry.update();
     }
+    public void turnLeft(double power){
+        leftWheel.setPower(power);
+        rightWheel.setPower(power);
+        telemetry.addData("Left Wheel Power", leftWheel.getPower());
+        telemetry.addData("Right Wheel Power", rightWheel.getPower());
+        telemetry.addData("is Turning", "Left");
+        telemetry.update();
+    }
+    public void turnRight(double power){
+        leftWheel.setPower(-power);
+        rightWheel.setPower(-power);
+        telemetry.addData("Left Wheel Power", leftWheel.getPower());
+        telemetry.addData("Right Wheel Power", rightWheel.getPower());
+        telemetry.addData("is Turning", "Right");
+        telemetry.update();
+    }
     public void driveRight ( double power){
         middleWheel.setPower(power);
+        leftWheel.setPower(0);
+        rightWheel.setPower(0);
         telemetry.addData("Wheel Power", middleWheel.getPower());
         telemetry.addData("is Turning", "Right");
         telemetry.update();
     }
     public void driveLeft ( double power){
+        leftWheel.setPower(0);
+        rightWheel.setPower(0);
         middleWheel.setPower(-power);
         telemetry.addData("Wheel Power", middleWheel.getPower());
         telemetry.addData("is Turning", "Right");
@@ -157,7 +178,7 @@ public class AutonomousStraightRed extends LinearOpMode {
         telemetry.addData("Hue", hsvValues[0]);
         telemetry.update();
         while(sensorColor.red()<100) {
-            driveLeft(0.45);
+            driveBackward(0.45);
         }
     }
 }
