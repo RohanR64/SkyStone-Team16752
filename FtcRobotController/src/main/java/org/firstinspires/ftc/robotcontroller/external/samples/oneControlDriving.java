@@ -26,6 +26,7 @@ public class oneControlDriving extends LinearOpMode  {
         clawServo = hardwareMap.get(Servo.class, "clawServo");
         telemetry.addData("Status", "Initialized");
         telemetry.update();
+        // das
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         // run until the end of the match (driver presses STOP)
