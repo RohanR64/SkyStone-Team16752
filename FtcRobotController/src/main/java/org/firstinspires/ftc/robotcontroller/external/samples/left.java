@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.robotcontroller.external.samples;
 
+
+
 import android.graphics.Color;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -58,7 +60,7 @@ public class left extends LinearOpMode {
         armMotor.setPower(0);
         middleWheel.setPower(0);
     }
-}
+
     public void colorSenseRed() {
         // hsvValues is an array that will  the hue, saturation, and value information.
         float hsvValues[] = {0F, 0F, 0F};
@@ -105,5 +107,4 @@ public class left extends LinearOpMode {
 
 
     }
-}
 }

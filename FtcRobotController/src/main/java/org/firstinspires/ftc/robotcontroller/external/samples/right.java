@@ -60,7 +60,7 @@ public class right extends LinearOpMode {
             armMotor.setPower(0);
             middleWheel.setPower(0);
         }
-    }
+
         public void colorSenseRed() {
             // hsvValues is an array that will  the hue, saturation, and value information.
             float hsvValues[] = {0F, 0F, 0F};
@@ -108,4 +108,3 @@ public class right extends LinearOpMode {
 
         }
     }
-}
