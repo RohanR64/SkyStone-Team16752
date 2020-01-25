@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.robotcontroller.external.samples;
 
-
-
 import android.graphics.Color;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -45,42 +43,24 @@ public class left extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         double armRaisedState = 0; //arm is in neutral state at the start
         int armPositionTarget = 0;
-
-        while (opmodeRunTime.seconds() > 25 && opmodeRunTime.seconds() < 30) {
-            while (sensorColor.blue() < 100 || sensorColor.red() < 100) {
-                float hsvValues[] = {0F, 0F, 0F};
-
-                // values is a reference to the hsvValues array.
-                final float values[] = hsvValues;
-
-                // sometimes it helps to multiply the raw RGB values with a scale factor
-                // to amplify/attentuate the measured values.
-                final double SCALE_FACTOR = 255;
-                // convert the RGB values to HSV values.
-                // multiply by the SCALE_FACTOR.
-                // then cast it back to int (SCALE_FACTOR is a double)
-                Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
-                        (int) (sensorColor.green() * SCALE_FACTOR),
-                        (int) (sensorColor.blue() * SCALE_FACTOR),
-                        hsvValues);
-                middleWheel.setPower(1);
+        while (opModeIsActive()) {
+            while (opmodeRunTime.seconds() > 25 && opmodeRunTime.seconds() < 30) {
+                colorSenseRed();
             }
-        }
-        if(opmodeRunTime.seconds() == 30){
             setToNormal();
-        }
-    }
+
+        }}
 
 
-
-    public void setToNormal() {
+    public void setToNormal () {
         leftWheel.setPower(0);
         rightWheel.setPower(0);
         armMotor.setPower(0);
+        middleWheel.setPower(0);
     }
-
+}
     public void colorSenseRed() {
-        // hsvValues is an array that will hold the hue, saturation, and value information.
+        // hsvValues is an array that will  the hue, saturation, and value information.
         float hsvValues[] = {0F, 0F, 0F};
 
         // values is a reference to the hsvValues array.
@@ -100,9 +80,7 @@ public class left extends LinearOpMode {
         // send the info back to driver station using telemetry function.
         telemetry.addData("Distance (cm)",
                 String.format(Locale.US, "%.02f", sensorDistance.getDistance(DistanceUnit.CM)));
-        telemetry.addData("Alpha", sensorColor.alpha());
         telemetry.addData("Red  ", sensorColor.red());
-        telemetry.addData("Green", sensorColor.green());
         telemetry.addData("Blue ", sensorColor.blue());
         telemetry.addData("Hue", hsvValues[0]);
         telemetry.update();
@@ -118,15 +96,14 @@ public class left extends LinearOpMode {
             if (sensorColor.blue() > 100) {
                 isDetected = true;
                 setToNormal();
-                middleWheel.setPower(0);
             }
             if (sensorColor.red() > 100) {
                 isDetected = true;
                 setToNormal();
-                middleWheel.setPower(0);
             }
         }
 
 
     }
+}
 }
