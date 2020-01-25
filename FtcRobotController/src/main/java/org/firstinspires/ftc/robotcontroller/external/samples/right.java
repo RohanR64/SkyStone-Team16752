@@ -47,6 +47,11 @@ public class right extends LinearOpMode {
         int armPositionTarget = 0;
         while (opModeIsActive()) {
             while (opmodeRunTime.seconds() > 25 && opmodeRunTime.seconds() < 30) {
+                while (opmodeRunTime.seconds()<0.2){
+                    leftWheel.setPower(-1.00);
+                    rightWheel.setPower(1.00);
+                }
+                setToNormal();
                 colorSenseRed();
             }
             setToNormal();
@@ -91,15 +96,15 @@ public class right extends LinearOpMode {
             while (!isDetected) {
                 leftWheel.setPower(0);
                 rightWheel.setPower(0);
-                middleWheel.setPower(0.45);
+                middleWheel.setPower(-1.00);
                 telemetry.addData("Wheel Power", middleWheel.getPower());
                 telemetry.addData("is Turning", "Right");
                 telemetry.update();
-                if (sensorColor.blue() > 100) {
+                if (sensorColor.blue() > 240) {
                     isDetected = true;
                     setToNormal();
                 }
-                if (sensorColor.red() > 100) {
+                if (sensorColor.red() > 240) {
                     isDetected = true;
                     setToNormal();
                 }
